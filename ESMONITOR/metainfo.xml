@@ -19,8 +19,8 @@
   <schemaVersion>2.0</schemaVersion>
   <services>
     <service>
-      <name>FILESYSTEM_MONITOR</name>
-      <extends>common-services/FILESYSTEM_MONITOR/0.1.0</extends>
+      <name>ESMONITOR</name>
+      <extends>common-services/ESMONITOR/0.1.0</extends>
       <version>0.1.0</version>
     </service>
   </services>

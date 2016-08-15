@@ -1,41 +1,74 @@
 {
-    "FILESYSTEM_MONITOR": {
-        "TRANSMITTER": [
+    "ESMONITOR": {
+        "MASTER": [
             {
-                "name": "filesystem_status",
-                "label": "Filesystem Status",
-                "description": "This alert triggers whenever a filesystem passes a threshold",
+                "name": "node_status",
+                "label": "Elastic Node Status",
+                "description": "This alert triggers whenever a node from the configs list is not running",
                 "interval": 1,
                 "scope": "ANY",
                 "enabled": true,
                 "source": {
                     "type": "METRIC",
                     "uri": {
-                        "http": "{{filesystem-config/port}}",
-                        "default_port": 6423,
+                        "http": "{{esmonitor-config/port}}",
+                        "default_port": 6424,
                         "connection_timeout": 5.0
                     },
                     "reporting": {
                         "ok": {
-                            "text": "OK: {1}\nWarning: {2}\nCritical: {3}",
+                            "text": "All nodes running",
                             "value": 0
                         },
-                        "warning": {
-                            "text": "OK: {1}\nWarning: {2}\nCritical: {3}",
-                            "value": 1
-                        },
                         "critical": {
-                            "text": "OK: {1}\nWarning: {2}\nCritical: {3}",
-                            "value": 2
+                            "text": "{1} are not running",
+                            "value": 1
                         },
                         "type": "STATUS"
                     },
                     "jmx": {
                         "property_list": [
-                            "/status_code",
-                            "/ok_filesystems",
-                            "/warning_filesystems",
-                            "/critical_filesystems"
+                            "/nodes_status_code",
+                            "/nodes_not_found"
+                        ],
+                        "value": "{0}"
+                    }
+                }
+            },
+            {
+                "name": "shard_status",
+                "label": "Elastic Shard Status",
+                "description": "This alert triggers whenever a shard is unassigned. Critical when that shard is 'raw' index",
+                "interval": 1,
+                "scope": "ANY",
+                "enabled": true,
+                "source": {
+                    "type": "METRIC",
+                    "uri": {
+                        "http": "{{esmonitor-config/port}}",
+                        "default_port": 6424,
+                        "connection_timeout": 5.0
+                    },
+                    "reporting": {
+                        "ok": {
+                            "text": "All shards assigned",
+                            "value": 0
+                        },
+                        "warning": {
+                            "text": "NON-RAW: {2} are unassigned",
+                            "value": 1
+                        },
+                        "critical": {
+                            "text": "RAW: {1} are unassigned, \nNON-RAW: {2} shards are unassigned",
+                            "value": 1
+                        },
+                        "type": "STATUS"
+                    },
+                    "jmx": {
+                        "property_list": [
+                            "/shards_status_code",
+                            "/unassigned_raw_shards",
+                            "/unassigned_other_shards"
                         ],
                         "value": "{0}"
                     }
