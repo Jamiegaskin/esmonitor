@@ -1,0 +1,59 @@
+{
+  "layouts": [
+    {
+      "layout_name": "default_esmonitor_dashboard",
+      "display_name": "Standard ESMONITOR Dashboard",
+      "section_name": "ESMONITOR_SUMMARY",
+      "widgetLayoutInfo": [
+        {
+          "widget_name": "Shards percent OK",
+          "description": "What percent of shards are assigned",
+          "widget_type": "GAUGE",
+          "is_visible": true,
+          "metrics": [
+            {
+              "name": "shardsOK._avg",
+              "metric_path": "metrics/filesystem/shardsOK",
+              "service_name": "ESMONITOR",
+              "component_name": "MASTER"
+            }
+          ],
+          "values": [
+            {
+              "name": "Shards percent OK",
+              "value": "${shardsOK._avg}"
+            }
+          ],
+          "properties": {
+            "warning_threshold": "0.99",
+            "error_threshold": "0.5"
+          }
+        },
+        {
+          "widget_name": "Missing nodes",
+          "description": "How many nodes are missing",
+          "widget_type": "GAUGE",
+          "is_visible": true,
+          "metrics": [
+            {
+              "name": "num_nodes_missing._avg",
+              "metric_path": "metrics/filesystem/num_nodes_missing",
+              "service_name": "FILESYSTEM_MONITOR",
+              "component_name": "TRANSMITTER"
+            }
+          ],
+          "values": [
+            {
+              "name": "Missing NOdes",
+              "value": "${num_nodes_missing._avg}"
+            }
+          ],
+          "properties": {
+            "warning_threshold": "1",
+            "error_threshold": "2"
+          }
+        }
+      ]
+    }
+  ]
+}

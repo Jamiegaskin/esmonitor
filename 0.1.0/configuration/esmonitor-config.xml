@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+  <property>
+    <name>check_interval</name>
+    <value>60</value>
+    <description>How often in seconds the program checks and transmits filesystem status information.</description>
+  </property>
+  <property>
+    <name>port</name>
+    <value>6423</value>
+    <description>The port the metrics are broadcasted to by the Transmitters</description>
+  </property>
+  <property>
+    <name>elastic_url</name>
+    <description>URL including port for the elastic API calls</description>
+  </property>
+  <property>
+    <name>elastic_username</name>
+    <description>Username for the elastic API calls</description>
+  </property>
+  <property>
+    <name>elastic_password</name>
+    <description>Password for the elastic API calls</description>
+    <value-attributes>
+       <type>password</type>
+    </value-attributes>
+  </property>
+  <property>
+    <name>nodes</name>
+    <value>s1 s2 s3 s4 s5 s6 s7 s8 s9 s0 s11 g1 g2</value>
+    <description>Space separated values for node names</description>
+    <value-attributes>
+       <type>multiLine</type>
+    </value-attributes>
+  </property>
+</configuration>

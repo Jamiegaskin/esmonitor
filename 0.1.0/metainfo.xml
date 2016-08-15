@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>ESMONITOR</name>
+            <displayName>ES Monitor</displayName>
+            <comment>A custom tool to monitor Elastic cluster shards and nodes from Ambari</comment>
+            <version>0.1.0</version>
+            <components>
+
+                <component>
+                    <name>MASTER</name>
+                    <displayName>Master</displayName>
+                    <category>MASTER</category>
+                    <cardinality>1</cardinality>
+                    <auto-deploy>
+                        <enabled>true</enabled>
+                    </auto-deploy>
+                    <timelineAppid>esmonitor</timelineAppid>
+                    <commandScript>
+                        <script>scripts/master.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>600</timeout>
+                    </commandScript>
+                    <logs>
+                        <log>
+                            <logId>esmonitor</logId>
+                            <primary>true</primary>
+                        </log>
+                    </logs>
+                    <!-- for debugging
+                    <customCommands>
+
+                            <customCommand>
+                                <name>print_configs</name>
+                                <commandScript>
+                                    <script>scripts/transmitter.py</script>
+                                    <scriptType>PYTHON</scriptType>
+                                    <timeout>600</timeout>
+                                </commandScript>
+                            </customCommand>
+
+                    </customCommands>
+                    -->
+                </component>
+            </components>
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>any</osFamily>  <!-- note: use osType rather than osFamily for Ambari 1.5.0 and 1.5.1 -->
+                    <packages>
+                        <package>python-requests.noarch</package>
+                    </packages>
+                </osSpecific>
+            </osSpecifics>
+            <configuration-dependencies>
+                <config-type>esmonitor-config</config-type>
+            </configuration-dependencies>
+            <commandScript>
+                <script>scripts/master.py</script>
+                <scriptType>PYTHON</scriptType>
+                <timeout>600</timeout>
+            </commandScript>
+            <requiredServices>
+                <service>AMBARI_METRICS</service>
+            </requiredServices>
+        </service>
+    </services>
+</metainfo>
