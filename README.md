@@ -17,8 +17,8 @@ mkdir /var/lib/ambari-server/resources/common-services/ESMONITOR
 
 Copy the files into place.
 ```
-cp -R filesystem-monitor/ESMONITOR /var/lib/ambari-server/resources/stacks/HDP/<HDP_VERSION>/services
-cp -R filesystem-monitor/0.1.0 /var/lib/ambari-server/resources/common-services/ESMONITOR
+cp -R esmonitor/ESMONITOR /var/lib/ambari-server/resources/stacks/HDP/<HDP_VERSION>/services
+cp -R esmonitor/0.1.0 /var/lib/ambari-server/resources/common-services/ESMONITOR
 ```
 
 Where HDP_VERSION is your version of HDP (I used 2.4). At this point you should have:
