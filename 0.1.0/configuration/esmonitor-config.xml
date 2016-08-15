@@ -18,10 +18,12 @@
   </property>
   <property>
     <name>elastic_username</name>
+    <value></value>
     <description>Username for the elastic API calls</description>
   </property>
   <property>
     <name>elastic_password</name>
+    <value></value>
     <description>Password for the elastic API calls</description>
     <value-attributes>
        <type>password</type>

@@ -11,7 +11,7 @@
 
                 <component>
                     <name>MASTER</name>
-                    <displayName>Master</displayName>
+                    <displayName>ES Monitor Master</displayName>
                     <category>MASTER</category>
                     <cardinality>1</cardinality>
                     <auto-deploy>
