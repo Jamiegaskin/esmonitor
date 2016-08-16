@@ -107,7 +107,6 @@ def get_jmx_metrics():
     unassigned_other_shards = []
     unassigned_raw_shards = []
     for shard in shards:
-        print(shard)
         name = shard['index'] + shard['shard'] + shard['prirep']
         if shard['state'] == "UNASSIGNED":
             if shard['index'] == "raw":

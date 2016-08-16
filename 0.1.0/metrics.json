@@ -1,31 +1,21 @@
 {
-  "MASTER": {
-    "Component": [{
-        "type": "ganglia",
-        "metrics": {
-          "default": {
-            "metrics/Testing": {
-              "metric": "Testing",
-              "pointInTime": false,
-              "temporal": true
-            },
-            "metrics/Fake": {
-              "metric": "Fake",
-              "pointInTime": false,
-              "temporal": true
-            },
-            "metrics/esmonitor/num_nodes_missing": {
-              "metric": "num_nodes_missing",
-              "pointInTime": true,
-              "temporal": true
-            },
-            "metrics/esmonitor/shardsOK": {
-              "metric": "shardsOK",
-              "pointInTime": true,
-              "temporal": true
+    "MASTER": {
+        "Component": [{
+            "type": "ganglia",
+            "metrics": {
+                "default": {
+                    "metrics/esmonitor/shardsOK": {
+                        "metric": "shardsOK",
+                        "pointInTime": true,
+                        "temporal": true
+                    },
+                    "metrics/esmonitor/num_nodes_missing": {
+                        "metric": "num_nodes_missing",
+                        "pointInTime": true,
+                        "temporal": true
+                    }
+                }
             }
-          }
+            }]
         }
-    }]
-  }
-}
+    }
