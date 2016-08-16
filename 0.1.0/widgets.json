@@ -21,7 +21,7 @@
           "values": [
             {
               "name": "Shards percent OK",
-              "value": "${shardsOK._avg}"
+              "value": "${shardsOK._avg/100}"
             }
           ],
           "properties": {
@@ -32,7 +32,7 @@
         {
           "widget_name": "Missing nodes",
           "description": "How many nodes are missing",
-          "widget_type": "GAUGE",
+          "widget_type": "NUMBER",
           "is_visible": true,
           "metrics": [
             {

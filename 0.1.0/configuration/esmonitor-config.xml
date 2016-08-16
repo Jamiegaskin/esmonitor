@@ -9,12 +9,13 @@
   </property>
   <property>
     <name>port</name>
-    <value>6423</value>
+    <value>6424</value>
     <description>The port the metrics are broadcasted to by the Transmitters</description>
   </property>
   <property>
     <name>elastic_url</name>
-    <description>URL including port for the elastic API calls</description>
+    <value></value>
+    <description>URL including port and schema for the elastic API calls</description>
   </property>
   <property>
     <name>elastic_username</name>

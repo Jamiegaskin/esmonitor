@@ -36,7 +36,7 @@ JMX_END = """  ]
 }
 """
 HOST, PORT = '', int(sys.argv[3])
-USER, PASS = int(sys.argv[4]), int(sys.argv[5])
+USER, PASS = sys.argv[4], sys.argv[5]
 ELASTIC_URL = sys.argv[6]
 NODES_SET = set(sys.argv[7:])
 
@@ -53,7 +53,7 @@ def update():
 
     shards = []
     shards_request = requests.get(ELASTIC_URL + "/_cat/shards", auth=(USER, PASS))
-    shards_texts = shards_request.text.split('\n')
+    shards_texts = shards_request.text.strip().split('\n')
     for shard in shards_texts:
         shards.append(dict(zip(LABELS, shard.split())))
 
@@ -94,7 +94,8 @@ def calc_and_send_metrics():
         try:
             #print("sending to metrics: ", filename, METRICS_URL)
             update()
-            percent_ok = requests.get(ELASTIC_URL + "/_cluster/health", auth=(USER, PASS)).json()['active_shards_percent_as_number']
+            percent_ok = requests.get(ELASTIC_URL + "/_cluster/health",
+                auth=(USER, PASS)).json()['active_shards_percent_as_number']
             send_to_metrics_shards(percent_ok)
             send_to_metrics_nodes()
         except:
@@ -106,12 +107,13 @@ def get_jmx_metrics():
     unassigned_other_shards = []
     unassigned_raw_shards = []
     for shard in shards:
+        print(shard)
         name = shard['index'] + shard['shard'] + shard['prirep']
         if shard['state'] == "UNASSIGNED":
             if shard['index'] == "raw":
-                unassigned_raw_shards.append[name]
+                unassigned_raw_shards.append(name)
             else:
-                unassigned_other_shards.append[name]
+                unassigned_other_shards.append(name)
     if unassigned_raw_shards:
         shard_status = 2
     elif unassigned_other_shards:
@@ -125,9 +127,9 @@ def get_jmx_metrics():
         node_status = 1
     else:
         node_status = 0
-    return {'shard_status_code': shard_status, 'unassigned_other_shards': warning,
-            'unassigned_raw_shards': critical, 'nodes_status_code', node_status,
-            'nodes_not_found': nodes_diff}
+    return {'shards_status_code': shard_status, 'unassigned_other_shards': unassigned_other_shards,
+            'unassigned_raw_shards': unassigned_raw_shards, 'nodes_status_code': node_status,
+            'nodes_not_found': list(nodes_diff)}
 
 
 def metrics_server():

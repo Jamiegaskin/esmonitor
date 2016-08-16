@@ -9,6 +9,11 @@
               "pointInTime": false,
               "temporal": true
             },
+            "metrics/Fake": {
+              "metric": "Fake",
+              "pointInTime": false,
+              "temporal": true
+            },
             "metrics/esmonitor/num_nodes_missing": {
               "metric": "num_nodes_missing",
               "pointInTime": true,

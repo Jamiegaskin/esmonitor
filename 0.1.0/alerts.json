@@ -20,6 +20,10 @@
                             "text": "All nodes running",
                             "value": 0
                         },
+                        "warning": {
+                            "text": "",
+                            "value": 0.5
+                        },
                         "critical": {
                             "text": "{1} are not running",
                             "value": 1
@@ -60,7 +64,7 @@
                         },
                         "critical": {
                             "text": "RAW: {1} are unassigned, \nNON-RAW: {2} shards are unassigned",
-                            "value": 1
+                            "value": 2
                         },
                         "type": "STATUS"
                     },
